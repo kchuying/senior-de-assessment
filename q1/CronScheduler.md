@@ -42,24 +42,27 @@ In this case, you can refer to "clean_applicant_DAG.py" created for this data pi
 The file is located in "docker-airflow-master > dags" folder
 
 ### What you can do
-In DAG, you can modify the job schedule & email recipients.
+In DAG, you can modify the parameters set for job schedule & email notification.
 You can refer to the default_args set.
 
 `'start_date': datetime(2022, 12, 8, 20, 30, tzinfo=local_tz)`
 
 `'email': ['kchuying@gmail.com']`
 
+`'email_on_failure': False,`
+
+`'email_on_retry': False,`
+
 `schedule_interval='@daily'`
 
 ### Tasks defined in DAG
-There are 6 tasks defined in the workflow
+There are 6 tasks defined in the workflow, as follows:
 
 >
 T1: Checks if "applications_dataset_1.csv" exists in the "data_files" folder  
 T2: Checks if "applications_dataset_2.csv" exists in the "data_files" folder  
 T3: Runs data cleansing logic (data_applicant_cleaner) located in dags>datacleaner3.py  
 T4: Sends an email update once the job is completed.  
-Note: You can set "email_on_failure" and "email_on_retry" to True to receive updates of different workflow status  
 T5: Moves "applications_dataset_1.csv" file into "processed_files" folder  
 T6: Moves "applications_dataset_2.csv" file into "processed_files" folder  
 
