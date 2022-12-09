@@ -25,7 +25,7 @@ On Terminal:
 `docker-compose -f ./docker-compose-LocalExecutor.yml up -d`
 
 >
--f : specify file name
+-f : specify file name  
 -d : tells docker to hide the logs and run the container in the background
 
 "docker-compose" is used to define and run multi-container Docker applications, yaml file contains all the required images and configuration for our application, no need to worry about the connections between images as all will be setup automatically
@@ -55,13 +55,13 @@ You can refer to the default_args set.
 There are 6 tasks defined in the workflow
 
 >
-T1: Checks if "applications_dataset_1.csv" exists in the "data_files" folder
-T2: Checks if "applications_dataset_2.csv" exists in the "data_files" folder
-T3: Runs data cleansing logic (data_applicant_cleaner) located in dags>datacleaner3.py
-T4: Sends an email update once the job is completed.
-Note: You can set "email_on_failure" and "email_on_retry" to True to receive updates of different workflow status
-T5: Moves "applications_dataset_1.csv" file into "processed_files" folder
-T6: Moves "applications_dataset_2.csv" file into "processed_files" folder
+T1: Checks if "applications_dataset_1.csv" exists in the "data_files" folder  
+T2: Checks if "applications_dataset_2.csv" exists in the "data_files" folder  
+T3: Runs data cleansing logic (data_applicant_cleaner) located in dags>datacleaner3.py  
+T4: Sends an email update once the job is completed.  
+Note: You can set "email_on_failure" and "email_on_retry" to True to receive updates of different workflow status  
+T5: Moves "applications_dataset_1.csv" file into "processed_files" folder  
+T6: Moves "applications_dataset_2.csv" file into "processed_files" folder  
 
 ### Flow of task run
 [t1,t2] >> t3 >> t4 >> [t5,t6]
