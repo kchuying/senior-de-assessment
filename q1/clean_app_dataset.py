@@ -1,20 +1,23 @@
 #import libraries
+import os
 from os import listdir
 from os.path import isfile, join
-import os
 import csv
 import glob
 import pandas as pd
-from datetime import date
-from datetime import datetime
+from datetime import date, datetime, timedelta
 from dateutil.relativedelta import relativedelta
 import re
 import hashlib
+
 
 #Set global variables
 fpath = "/Users/chuying/Documents/senior-de-assessment/q1/data_files/"
 combined_df = pd.DataFrame()
 error_df = pd.DataFrame()
+
+#Set variable yesterday_date
+yesterday_date = datetime.strftime(datetime.now() - timedelta(1), '%Y-%m-%d')
 
 #Create a function to read multiple files within a folder
 def read_csv_file(fpath):
@@ -228,13 +231,13 @@ def main():
         combined_df = generate_mbr_id(combined_df)
 
         #store rejected applicants in a csv file
-        error_df.to_csv('error_data_log_{date}.csv'.format(date = date.today()), index=False)
+        error_df.to_csv('../data_error_logs/error_data_log_{date}.csv'.format(date = yesterday_date, index=False))
 
         #Reorder columns in requested format
         final_df = combined_df[['first_name', 'last_name', 'formatted_dob', 'above_18', 'member_id']]
 
         #store successful applicants in a csv file
-        final_df.to_csv('cleansed_data_{date}.csv'.format(date = date.today()), index=False)
+        final_df.to_csv('../results/cleansed_data_{date}.csv'.format(date = yesterday_date, index=False))
 
     except FileNotFoundError:
         print("Directory: {0} does not exist".format(fpath))
