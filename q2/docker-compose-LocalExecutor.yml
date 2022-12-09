@@ -37,7 +37,7 @@ services:
             - EXECUTOR=Local
             - AIRFLOW__SMTP__SMTP_HOST=smtp.gmail.com
             - AIRFLOW__SMTP__SMTP_USER=kchuying@gmail.com
-            - AIRFLOW__SMTP__SMTP_PASSWORD=djrqbqkcgxpfltmk
+            - AIRFLOW__SMTP__SMTP_PASSWORD=
             - AIRFLOW__SMTP__SMTP_PORT=587
             - AIRFLOW__SMTP__SMTP_MAIL_FROM=Airflow
 
