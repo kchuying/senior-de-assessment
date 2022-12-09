@@ -5,6 +5,18 @@ The data pipeline is scheduled to trigger at 20:30 daily.
 
 ## How it works
 
+In airflow, a Directed Acyclic Graph (DAG) is required to define the workflow. DAG calls the python script that cleanses the data files, and move the output file to the respective folders.
+
+1. data_files: 2 raw files that contains membership data  
+(e.g. applications_dataset_1.csv, applications_dataset_2.csv)  
+2. data_error_logs: file logs all failed applications  
+(e.g. error_data_logs_<date>.csv)  
+3. results: contains successful applications  
+(e.g. cleansed_data_<date>.csv)
+
+In this case, you can refer to "clean_applicant_DAG.py" created for this data pipeline.
+The file is located in "docker-airflow-master > dags" folder
+
 ### Steps to run an airflow docker
 
 **Step 1: Install docker image and run**
@@ -37,9 +49,14 @@ On Terminal:
 
 You can find the <container_id> by executing "docker ps" on Terminal
 
-Note that a Directed Acyclic Graph (DAG) is required to define the workflow.
-In this case, you can refer to "clean_applicant_DAG.py" created for this data pipeline.
-The file is located in "docker-airflow-master > dags" folder
+**Step 4: Use CLI or Launch Airflow UI to view DAGs**
+
+List all the DAGs present in your DAGs directory
+
+On Terminal:
+`airflow list_dags`
+
+URL (when run locally): http://localhost:8080/admin
 
 ### What you can do
 In DAG, you can modify the parameters set for job schedule & email notification.
