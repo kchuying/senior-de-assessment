@@ -5,17 +5,16 @@ The data pipeline is scheduled to trigger at 20:30 daily.
 
 ## How it works
 
-In airflow, a Directed Acyclic Graph (DAG) is required to define the workflow. DAG calls the python script that cleanses the data files, and move the output file to the respective folders.
+In airflow, a Directed Acyclic Graph (DAG) is created to define the data pipeline workflow. DAG calls a python script that cleanses the data files, and move the results to the specified folders.
 
-1. data_files: 2 raw files that contains membership data  
+1. **data_files**: Contains 2 raw files that stores membership data  
 (e.g. applications_dataset_1.csv, applications_dataset_2.csv)  
-2. data_error_logs: file logs all failed applications  
-(e.g. error_data_logs_<date>.csv)  
-3. results: contains successful applications  
-(e.g. cleansed_data_<date>.csv)
+2. **data_error_logs**: Contains file logs of all failed applications  
+(e.g. error_data_logs_< date >.csv)  
+3. **results**: Contains successful membership applications  
+(e.g. cleansed_data_< date >.csv)
 
-In this case, you can refer to "clean_applicant_DAG.py" created for this data pipeline.
-The file is located in "docker-airflow-master > dags" folder
+You can refer to "clean_applicant_DAG.py" created for this data pipeline. The file is located in "docker-airflow-master > dags" folder
 
 ### Steps to run an airflow docker
 
