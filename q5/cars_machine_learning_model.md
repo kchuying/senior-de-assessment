@@ -15,7 +15,7 @@ warnings.simplefilter(action="ignore", category=FutureWarning)
 
 ```python
 #Set global variables
-fpath = "/Users/chuying/Documents/senior-de-assessment/q5/"
+fpath = "/Users/chuying/Documents/senior-de-assessment/q5/data/"
 ```
 
 
@@ -25,7 +25,7 @@ os.chdir(fpath)
 print("Current working dir: ", os.getcwd())
 ```
 
-    Current working dir:  /Users/chuying/Documents/senior-de-assessment/q5
+    Current working dir:  /Users/chuying/Documents/senior-de-assessment/q5/data
 
 
 ## Step 1: Data Wrangling
@@ -557,8 +557,6 @@ cm = confusion_matrix(y_test, svm_predictions)
 print(cm)
 ```
 
-    0.3468208092485549
-    43.276083882516375
     0.3468208092485549
     [[17 17  0 50]
      [ 9 21  1 46]
