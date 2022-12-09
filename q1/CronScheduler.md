@@ -10,9 +10,13 @@ The data pipeline is scheduled to trigger at 20:30 daily.
 **Step 1: Install docker image and run**
 
 - Pull image from docker hub, all the components one by one, set up environment variables
+
+On Terminal:
 `docker pull apache/airflow`
 
 - Run image of docker
+
+On Terminal:
 `docker run -d -p 80:80 apache/airflow`
 
 **Step 2: Create a compose file and run**
