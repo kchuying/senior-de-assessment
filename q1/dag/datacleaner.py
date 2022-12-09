@@ -21,8 +21,10 @@ def data_applicant_cleaner():
     #Create a function to read multiple files within a folder
     def read_csv_file(fpath):
 
-        global combined_df #read, write global variable within a function
-        global error_df
+        #global combined_df #read, write global variable within a function
+        #global error_df
+        combined_df = pd.DataFrame()
+        error_df = pd.DataFrame()
 
         #Lookup files in folder with specific file prefix
         folder_dir = fpath + "applications_dataset*.csv"
@@ -174,7 +176,8 @@ def data_applicant_cleaner():
     #Create a reusable function to log errors whenever records fail validation checks
     def log_error_record(df, error_msg):
 
-        global error_df
+        #global error_df
+        error_df = pd.DataFrame()
         print("Logging error records...")
 
         df['error_message'] = error_msg

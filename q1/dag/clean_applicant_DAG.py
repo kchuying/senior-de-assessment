@@ -62,7 +62,7 @@ with DAG('clean_applicant_dag', default_args=default_args,schedule_interval='@da
         to='kchuying@gmail.com',
         subject='Daily report generated',
         html_content=""" <h1>Dataset is cleansed and ready for viewing.</h1> """,
-        files=['/usr/local/airflow/store_files_airflow/processed_files/cleansed_data_%s.csv' % yesterday_date])
+        files=['/usr/local/airflow/store_files_airflow/results/cleansed_data_%s.csv' % yesterday_date])
 
     #Rename processed files and move to separate folder
     t5 = BashOperator(task_id='rename_raw_file1', bash_command='cat ~/store_files_airflow/data_files/applications_dataset_1.csv && mv ~/store_files_airflow/data_files/applications_dataset_1.csv ~/store_files_airflow/processed_files/applications_dataset_1_%s.csv' % yesterday_date)
