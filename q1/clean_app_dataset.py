@@ -231,13 +231,13 @@ def main():
         combined_df = generate_mbr_id(combined_df)
 
         #store rejected applicants in a csv file
-        error_df.to_csv('../data_error_logs/error_data_log_{date}.csv'.format(date = yesterday_date, index=False))
+        error_df.to_csv('../data_error_logs/error_data_log_{date}.csv'.format(date = yesterday_date), index=False)
 
         #Reorder columns in requested format
         final_df = combined_df[['first_name', 'last_name', 'formatted_dob', 'above_18', 'member_id']]
 
         #store successful applicants in a csv file
-        final_df.to_csv('../results/cleansed_data_{date}.csv'.format(date = yesterday_date, index=False))
+        final_df.to_csv('../results/cleansed_data_{date}.csv'.format(date = yesterday_date), index=False)
 
     except FileNotFoundError:
         print("Directory: {0} does not exist".format(fpath))
