@@ -83,6 +83,6 @@ T5: Moves "applications_dataset_2.csv" file into "processed_files" folder
 T6: Sends an email update once the job is completed.  
 
 ### Flow of task run
-[t1,t2] >> t3 >> [t4,t5] >> t7 >> t6
+[t1,t2] >> t3 >> [t4,t5] >> t6
 
 Note: T1 & T2 runs in parallel, same applies for T4 & T5.
