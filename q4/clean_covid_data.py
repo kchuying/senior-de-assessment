@@ -3,14 +3,18 @@ import os
 import requests
 import json
 import pandas as pd
+from datetime import date
 from datetime import datetime
 
 #Set file path
 fpath = "/Users/chuying/Documents/senior-de-assessment/q4/"
 
-#Input start_date and end_date of analysis
-start_date = "2021-01-01T00:00:00Z"
-end_date = "2022-12-31T00:00:00Z"
+#Input start date (DD/MM/YY)
+input_date = '01/01/20' 
+
+#Create two variables to define data period required
+start_date = datetime.strptime(input_date, '%d/%m/%y')
+end_date = datetime.combine(date.today(), datetime.min.time())
 
 #Define endpoint
 URL = "https://api.covid19api.com/country/singapore/status/confirmed?from={}&to={}".format(start_date, end_date)
@@ -23,6 +27,7 @@ def read_json(endpoint):
         #print(json_data)
         #print(type(data)) #returns a list
         df = pd.DataFrame.from_dict(json_data, orient='columns') #convert list to df
+        print(df)
         df.columns = [x.lower() for x in df.columns] #set column headers to lowercase
     return(df)
 
@@ -38,6 +43,7 @@ def get_daily_difference(df):
 
     return(df)
 
+#Create function to split date to year, month and day
 def split_datetime(new_df):
 
     #Convert datetime to date
@@ -53,14 +59,13 @@ def main():
 
     try:
 
-        os.chdir(fpath)     # Change the current working directory
+        # Change the current working directory
+        os.chdir(fpath)
         print("Current working dir: ", os.getcwd())
 
         read_df = read_json(URL)
-        # print(read_df.dtypes)
-        # print(read_df.columns)
-        print(df['country'].unique())
-        print(df['status'].unique())
+        #print(read_df.dtypes)
+        #print(read_df.columns)
 
         #Calculate daily difference for each variable
         read_df = get_daily_difference(read_df)
