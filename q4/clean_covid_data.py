@@ -10,7 +10,7 @@ from datetime import datetime
 fpath = "/Users/chuying/Documents/senior-de-assessment/q4/"
 
 #Input start date (DD/MM/YY)
-input_date = '01/01/20' 
+input_date = '01/01/20'
 
 #Create two variables to define data period required
 start_date = datetime.strptime(input_date, '%d/%m/%y')
@@ -27,7 +27,6 @@ def read_json(endpoint):
         #print(json_data)
         #print(type(data)) #returns a list
         df = pd.DataFrame.from_dict(json_data, orient='columns') #convert list to df
-        print(df)
         df.columns = [x.lower() for x in df.columns] #set column headers to lowercase
     return(df)
 
@@ -43,7 +42,7 @@ def get_daily_difference(df):
 
     return(df)
 
-#Create function to split date to year, month and day
+#Create function to split datetime to year, month and day
 def split_datetime(new_df):
 
     #Convert datetime to date
@@ -75,7 +74,7 @@ def main():
 
         #split datetime into ymd
         final_df = split_datetime(read_df)
-        print(final_df.columns)
+        #print(final_df.columns)
 
         #rename_columns
         final_df = final_df.rename(columns={'cases': 'total_confirmed_cases'})
